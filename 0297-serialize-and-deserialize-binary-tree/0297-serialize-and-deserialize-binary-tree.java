@@ -36,22 +36,26 @@ public class Codec {
         String[] values = data.split(" ");
         TreeNode root = new TreeNode(Integer.parseInt(values[0]));
         queue.add(root);
-        for(int i=1; i<values.length; i++){
-            TreeNode parent = queue.poll();
-            if(!values[i].equals("null")){
-                    TreeNode left = new TreeNode(Integer.parseInt(values[i]));
-                    parent.left=left;
-                    queue.add(left);
-            }
-            if(!values[++i].equals("null")){
-                TreeNode right = new TreeNode(Integer.parseInt(values[i]));
-                parent.right=right;
-                queue.add(right);
-            }
-        }
-        return root;
+        int i = 1;
+    while (!queue.isEmpty() && i < values.length) {
+    TreeNode parent = queue.poll();
+    if (!values[i].equals("null")) {
+        TreeNode left = new TreeNode(Integer.parseInt(values[i]));
+        parent.left = left;
+        queue.add(left);
+    }
+    i++;
+    if (i < values.length && !values[i].equals("null")) {
+        TreeNode right = new TreeNode(Integer.parseInt(values[i]));
+        parent.right = right;
+        queue.add(right);
+    }
+    i++;
+       
         
     }
+     return root;
+}
 }
 
 // Your Codec object will be instantiated and called as such:
