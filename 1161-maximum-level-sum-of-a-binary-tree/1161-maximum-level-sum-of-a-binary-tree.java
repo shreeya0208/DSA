@@ -20,7 +20,7 @@ class Solution {
       
         queue.add(root);
         int currentLevel=1;
-        int maxLevel=0;
+        int maxLevel=1;
         int maxSum=Integer.MIN_VALUE;
         while(!queue.isEmpty()){
             int size = queue.size();
