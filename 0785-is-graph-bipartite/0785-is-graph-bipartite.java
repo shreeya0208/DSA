@@ -1,29 +1,29 @@
 class Solution {
     public boolean isBipartite(int[][] graph) {
-        int n =  graph.length;
-        int[] color = new int[n];
-        for(int i=0; i<n; i++){
-            if(color[i]!=0){
-                continue;
-            }
-            Queue<Integer>queue = new LinkedList<>();
-            queue.add(i);
-            color[i]=1;
-            while(!queue.isEmpty()){
-                int node = queue.poll();
-                int[] neighbours = graph[node];
-                for(int j=0; j<neighbours.length;j++){
-                    int neigh = neighbours[j];
-                     if (color[neigh] == 0) {
-                        color[neigh] = -color[node]; 
-                        queue.offer(neigh);
-                    }
-                    else if(color[neigh]==color[node])return false;
-
+      int n = graph.length;
+      int[] color = new int[n];
+      Arrays.fill(color,-1);
+      for(int i=0; i<n; i++){
+        if(color[i]==-1){
+              if(!function(graph,color,i)) return false;
+        }
+      }
+      return true;
+    }
+    public boolean function(int[][]graph, int[]color, int i){
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(i);
+        color[i]=0;
+        while(!queue.isEmpty()){
+            int current = queue.poll();
+            for(int neigh: graph[current]){
+                if(color[neigh]==-1){
+                    color[neigh]=1-color[current];
+                    queue.add(neigh);
                 }
+                else if(color[neigh]==color[current])return false;
             }
         }
         return true;
-        
     }
 }
