@@ -3,7 +3,7 @@ class Solution {
         int m = isConnected.length;
           int n = isConnected[0].length;
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-        for(int i=0; i<n; i++){
+        for(int i=0; i<m; i++){
             adj.add(new ArrayList<>());
         }
         for(int i=0; i<m; i++){
