@@ -1,12 +1,12 @@
 class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> ans =new ArrayList<>();
-        function(0,candidates,target,ans,new ArrayList<>());
-        return ans; 
-        
+        List<List<Integer>> ans = new ArrayList<>();
+        helper(candidates,target,ans,new ArrayList<>(),0);
+        return ans;
+
     }
-    public void function(int index, int[]arr, int target, List<List<Integer>>ans,List<Integer>ds){
-        if(index==arr.length){
+    public void helper(int[]arr, int target, List<List<Integer>>ans, List<Integer>ds,int    index ){
+        if(arr.length==index){
             if(target==0){
                 ans.add(new ArrayList<>(ds));
             }
@@ -14,10 +14,9 @@ class Solution {
         }
         if(arr[index]<=target){
             ds.add(arr[index]);
-            function(index,arr,target-arr[index],ans,ds);
+            helper(arr,target-arr[index],ans,ds,index);
             ds.remove(ds.size()-1);
-            
         }
-        function(index+1,arr,target,ans,ds);
+        helper(arr,target,ans,ds,index+1);
     }
 }
