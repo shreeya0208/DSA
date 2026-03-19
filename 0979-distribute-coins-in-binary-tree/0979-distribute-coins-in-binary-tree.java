@@ -17,14 +17,14 @@ class Solution {
     int moves=0;
     public int distributeCoins(TreeNode root) {
         helper(root);
-       return moves;
-        
+        return moves;
+
     }
-    public int helper(TreeNode root){
-        if(root==null)return 0;
-        int left= helper(root.left);
-        int right=helper(root.right);
-        moves+=Math.abs(left)+Math.abs(right);
-        return (root.val-1)+left+right;
+    public int helper(TreeNode node){
+        if(node==null)return 0;
+        int left=helper(node.left);
+        int right=helper(node.right);
+         moves+=Math.abs(left)+Math.abs(right);
+        return (node.val-1)+left+right;
     }
 }
