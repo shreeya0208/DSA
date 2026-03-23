@@ -8,7 +8,7 @@ class Solution {
         }
         for(int j=0; j<n; j++){
             if(board[0][j]=='O')dfs(board,0,j);
-            if(board[n-1][j]=='O')dfs(board,n-1,j);
+            if(board[m-1][j]=='O')dfs(board,m-1,j);
         }
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
