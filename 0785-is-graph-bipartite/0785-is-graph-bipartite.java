@@ -7,19 +7,18 @@ class Solution {
         }
         for(int i=0; i<n; i++){
             if(color[i]==-1){
-                if(!dfs(graph,0,color,i))return false;
+                if(!dfs(graph,color,0,i))return false; 
             }
         }
         return true;
-        
     }
-    public boolean dfs(int[][] graph, int col, int[]color, int node){
+    public boolean dfs(int[][] graph, int[] color, int col, int node){
         color[node]=col;
-        for(int i :graph[node]){
+        for(int i : graph[node]){
             if(color[i]==-1){
-            if(!dfs(graph,1-col,color,i))return false;
+                if(!dfs(graph,color,1-col,i)) return false;
             }
-            else if(color[i]==col)return false;
+            if(color[i]==col)return false;
         }
         return true;
     }
