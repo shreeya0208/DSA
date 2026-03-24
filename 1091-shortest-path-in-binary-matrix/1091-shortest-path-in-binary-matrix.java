@@ -1,38 +1,63 @@
 class Pair{
-    int row,column;
-    Pair(int row, int column){
+    int row;
+    int col;
+    Pair(int row, int col){
         this.row=row;
-        this.column=column;
+        this.col=col;
     }
 }
 
-
 class Solution {
     public int shortestPathBinaryMatrix(int[][] grid) {
-        int n = grid.length;
-            if(grid[0][0]==1|| grid[n-1][n-1]==1)return -1;
-            int directions[][]={{-1,0},{1,0},{0,1},{0,-1},{1,1},{-1,-1},{-1,1},{1,-1}};
-            Queue<Pair> queue = new LinkedList<Pair>();
-            queue.add(new Pair(0,0));
-            grid[0][0]=1;
-            while(!queue.isEmpty()){
-                Pair current = queue.poll();
-                int r = current.row;
-                int c = current.column;
-                  int dist = grid[r][c];
-                  if(r==n-1 && c==n-1)return dist;
-               
-            for(int[] dir : directions){
-                int nr = r+ dir[0];
-                int nc = c+dir[1];
-                if(nr>=0 && nc>=0 && nr<n && nc<n && grid[nr][nc]==0){
-                    queue.offer(new Pair(nr,nc));
-                    grid[nr][nc]=dist+1;
+        int n= grid.length;
+        if(grid[0][0]==1 || grid[n-1][n-1]==1)return -1;
+        grid[0][0]=1;
+        int distance=1;
+        Queue<Pair> queue= new LinkedList<>();
+        queue.add(new Pair(0,0));
+        
+        while(!queue.isEmpty()){
+            int size=queue.size();
+            for(int i=0; i<size; i++){
+                Pair current= queue.poll();
+                int r= current.row;
+                int c=current.col;
+                if(r==n-1 && c==n-1)return distance;
+                if(r-1>=0 && grid[r-1][c]==0){
+                    queue.add(new Pair(r-1,c));
+                    grid[r-1][c]=1;
                 }
-
-                    
-            } 
+                if(r+1<n && grid[r+1][c]==0){
+                    queue.add(new Pair(r+1,c));
+                    grid[r+1][c]=1;
+                }
+                if(c-1>=0 && grid[r][c-1]==0){
+                    queue.add(new Pair(r,c-1));
+                    grid[r][c-1]=1;
+                }
+                 if(c+1<n && grid[r][c+1]==0){
+                    queue.add(new Pair(r,c+1));
+                    grid[r][c+1]=1;
+                }
+                 if(r-1>=0 && c-1>=0 && grid[r-1][c-1]==0){
+                    queue.add(new Pair(r-1,c-1));
+                    grid[r-1][c-1]=1;
+                }
+                if(r-1>=0 && c+1<n && grid[r-1][c+1]==0){
+                    queue.add(new Pair(r-1,c+1));
+                    grid[r-1][c+1]=1;
+                }
+                  if(r+1<n && c-1>=0 && grid[r+1][c-1]==0){
+                    queue.add(new Pair(r+1,c-1));
+                    grid[r+1][c-1]=1;
+                }
+                if(r+1<n && c+1<n && grid[r+1][c+1]==0){
+                    queue.add(new Pair(r+1,c+1));
+                    grid[r+1][c+1]=1;
+                }
             }
-            return -1;   
+            distance++;
+        }
+        return distance;
     }
 }
