@@ -58,6 +58,6 @@ class Solution {
             }
             distance++;
         }
-        return distance;
+        return -1;
     }
 }
