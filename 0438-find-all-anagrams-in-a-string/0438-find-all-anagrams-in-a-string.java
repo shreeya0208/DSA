@@ -1,9 +1,9 @@
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-      List<Integer> ls = new ArrayList<>();
+      List<Integer> ans= new ArrayList<>();
       int[] pcount= new int[26];
       int[] scount= new int[26];
-      for(int ch: p.toCharArray()){
+      for(char ch: p.toCharArray()){
         pcount[ch-'a']++;
       }
       int k= p.length();
@@ -13,10 +13,11 @@ class Solution {
             scount[s.charAt(i-k)-'a']--;
         }
         if(Arrays.equals(scount,pcount)){
-            ls.add(i-k+1);
+            ans.add(i-k+1);
         }
       }
-      return ls;
+      return ans;
+        }
+
+        
     }
-    
-}
