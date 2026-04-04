@@ -3,6 +3,7 @@ class Solution {
         int[] taken = new int[nums.length];
         List<List<Integer>> result= new ArrayList<>();
         List<Integer> ls = new ArrayList<>();
+        Arrays.sort(nums);
         helper(nums,taken,result,ls);
         return result;
 
