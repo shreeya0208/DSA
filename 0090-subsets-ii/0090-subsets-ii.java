@@ -1,18 +1,18 @@
 class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> current= new ArrayList<>();
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> ls = new ArrayList<>();
         Arrays.sort(nums);
-        helper(nums,0,result,current);
-        return result;
+        helper(nums,ans,ls,0);
+        return ans;
     }
-    public void helper(int[] nums, int index, List<List<Integer>> result,List<Integer> current){
-        result.add(new ArrayList<>(current));
+    public void helper(int[] nums,  List<List<Integer>> ans,List<Integer> ls, int index ){
+        ans.add(new ArrayList<>(ls));
         for(int i= index; i<nums.length; i++){
-            if(i>index && nums[i]==nums[i-1])continue;
-            current.add(nums[i]);
-            helper(nums,i+1,result,current);
-            current.remove(current.size()-1);
+            if(i> index && nums[i]==nums[i-1])continue;
+            ls.add(nums[i]);
+            helper(nums,ans,ls,i+1);
+            ls.remove(ls.size()-1);
         }
     }
 }
