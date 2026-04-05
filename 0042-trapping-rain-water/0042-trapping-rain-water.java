@@ -8,28 +8,23 @@ class Solution {
         while(left<right){
             if(height[left]<=height[right]){
                 if(leftmax>height[left]){
-                total=total+leftmax-height[left];
-            }
-            
-            else{
-                leftmax=height[left];
-            }
-            left++;
+                    total += leftmax-height[left];
+                }
+                else{
+                    leftmax=height[left];
+                }
+                left++;
             }
             else{
                     if(rightmax>height[right]){
-                        total=total+rightmax-height[right];
+                        total+= rightmax-height[right];
                     }
-                
-                else{
-                    rightmax=height[right];
-                }
-                right--;
-                }
-            
-            
+                    else{
+                        rightmax=height[right];
+                    }
+                    right--;
+            }
         }
         return total;
-        
     }
 }
