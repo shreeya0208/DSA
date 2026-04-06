@@ -12,22 +12,21 @@ class Solution {
         "wxyz"
     };
     public List<String> letterCombinations(String digits) {
-        List<String> ls= new ArrayList<>();
-        helper(new StringBuilder(), digits, ls, 0);
-        return ls;
+       List<String> ls = new ArrayList<>();
+       helper(digits,ls,new StringBuilder(),0);
+       return ls;
 
     }
-    public void helper(StringBuilder sb, String digits,List<String> ls, int index){
-        if(index==digits.length()){
+    public void helper(String digits, List<String> ls, StringBuilder sb, int index){
+        if(digits.length()==index){
             ls.add(sb.toString());
             return;
         }
         String letters = keypad[digits.charAt(index)-'0'];
         for(char ch: letters.toCharArray()){
             sb.append(ch);
-            helper(sb,digits,ls,index+1);
+            helper(digits,ls,sb,index+1);
             sb.deleteCharAt(sb.length()-1);
         }
-
     }
 }
