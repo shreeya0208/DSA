@@ -1,54 +1,53 @@
 class Solution {
     public int minDays(int[] bloomDay, int m, int k) {
-        long val= (long)m*k;
-        if(val> bloomDay.length)return -1;
-        int start=min(bloomDay);
-        int end= max(bloomDay);
+        if((long)m*k > bloomDay.length)return -1;
+        int start= min(bloomDay);
+        int end=max(bloomDay);
         while(start<=end){
             int mid = start+(end-start)/2;
-            if(possible(bloomDay,m,k,mid)==true){
-                    end=mid-1;
+            if(helper(bloomDay,m,k,mid)==true){
+                end=mid-1;
             }
             else{
                 start=mid+1;
             }
-            
         }
         return start;
     }
-    public boolean possible(int[] bloomDay, int m, int k, int days){
-        int flowercount=0;
-        int bouquetcount=0;
-        for(int i=0; i<bloomDay.length; i++){
-            if(days>=bloomDay[i]){
-                flowercount++;
-            }
-            else{
-                bouquetcount += flowercount/k;
-               flowercount=0;
+    public int min(int[] arr){
+        int min = Integer.MAX_VALUE;
+        for(int i=0; i<arr.length; i++){
+            if(arr[i]<min){
+                min=arr[i];
             }
         }
-         bouquetcount+= flowercount/k;
-            if(bouquetcount>=m)return true;
-            return false;
+        return min;
     }
-    public int max(int[] bloomDay){
-        int max= Integer.MIN_VALUE;
-        for(int i=0; i<bloomDay.length; i++){
-            if(bloomDay[i]>max){
-                max=bloomDay[i];
+
+    public int max(int[] arr){
+        int max = Integer.MIN_VALUE;
+        for(int i=0; i<arr.length; i++){
+            if(arr[i]>max){
+                max=arr[i];
             }
         }
         return max;
     }
 
-    public int min(int[] bloomDay){
-        int min=Integer.MAX_VALUE;
-        for(int i=0; i<bloomDay.length; i++){
-            if(bloomDay[i]<min){
-                min=bloomDay[i];
+    public boolean helper(int[] arr, int m, int k, int days ){
+        int flowerCount=0;
+        int bouquetCount=0;
+        for(int i=0; i<arr.length; i++){
+            if(days>=arr[i]){
+                flowerCount++;
+            }
+            else{
+            bouquetCount+=flowerCount/k;
+            flowerCount=0;
             }
         }
-        return min;
+         bouquetCount+=flowerCount/k;
+         if(bouquetCount>=m)return true;
+         return false;
     }
 }
