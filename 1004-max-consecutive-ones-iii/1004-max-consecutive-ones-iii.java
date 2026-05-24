@@ -5,7 +5,7 @@ class Solution {
         int maxlen=0;
         for(int right=0; right<nums.length; right++){
             if(nums[right]==0){
-                zeros++;   
+                zeros++;
             }
             while(zeros>k){
                 if(nums[left]==0){
@@ -15,6 +15,7 @@ class Solution {
             }
             maxlen=Math.max(maxlen,right-left+1);
         }
-            return maxlen;
+        return maxlen;
+        
     }
 }
